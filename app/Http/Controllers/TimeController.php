@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateTimeRequest;
 use App\Http\Resources\TimeResource;
 use App\Models\Time;
+use App\Repositories\Contracts\TimeRepositoryInterface;
+use App\Services\CreateTimeService;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -12,9 +15,11 @@ class TimeController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    
     public function index()
     {
-        $times = Time::with('jogadores')->get();
+        $times = $this->allWithJogadores();
 
         return TimeResource::collection($times);
     }
@@ -22,9 +27,11 @@ class TimeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateTimeRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        
     }
 
     /**
