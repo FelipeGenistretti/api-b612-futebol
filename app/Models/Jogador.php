@@ -11,7 +11,18 @@ class Jogador extends Model
     /** @use HasFactory<\Database\Factories\JogadorFactory> */
     use HasFactory;
 
-    public function time():BelongsTo{
+    protected $table = 'jogadores'; // 🔹 Corrige o nome da tabela
+
+    protected $fillable = [
+        'nome',
+        'time_id',
+        'posicao',
+        'idade',
+        'nacionalidade',
+    ];
+
+    public function time(): BelongsTo
+    {
         return $this->belongsTo(Time::class);
     }
 }

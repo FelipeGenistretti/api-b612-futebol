@@ -57,8 +57,14 @@ class TimeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Time $time)
+    public function delete($id)
     {
-        //
+        $user = Time::find($id);
+
+     
+     //       return response()->json(['message' => 'Time não encontrado'], 404);
+        
+
+      
     }
 }
