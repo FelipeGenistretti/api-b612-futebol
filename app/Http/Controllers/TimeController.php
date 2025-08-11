@@ -9,6 +9,7 @@ use App\Repositories\Contracts\TimeRepositoryInterface;
 use App\Services\CreateTimeService;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
+use App\Services\Factories\MakeCreateTimeService;
 
 class TimeController extends Controller
 {
@@ -19,7 +20,10 @@ class TimeController extends Controller
     
     public function index()
     {
-        $times = $this->allWithJogadores();
+        $allWithJogadoresService = MakeCreateTimeService::make();
+
+        // aqui chama o execute()
+        $times = $allWithJogadoresService->execute();
 
         return TimeResource::collection($times);
     }
