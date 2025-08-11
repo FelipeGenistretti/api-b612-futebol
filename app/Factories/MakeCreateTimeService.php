@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Factories;
+namespace App\Factories;
 
 use App\Repositories\Eloquent\EloquentTimeRepository;
 use App\Services\CreateTimeService;
