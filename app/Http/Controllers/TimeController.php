@@ -12,11 +12,15 @@ use App\Services\CreateTimeService;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Factories\MakeListTimeService;
+<<<<<<< HEAD
 use App\Factories\MakeDeleteTimeService;
 use GuzzleHttp\Promise\Create;
 use InvalidArgumentException;
 use Illuminate\Validation\ValidationException;
 
+=======
+use App\Factories\MakeUpdateTimeService;
+>>>>>>> 52e991b (Implementando o metodo update)
 
 use function Laravel\Prompts\error;
 
@@ -31,12 +35,8 @@ class TimeController extends Controller
 
         $allWithJogadoresService = MakeListTimeService::make();
 
-        
-
         $times = $allWithJogadoresService->execute();
-
     
-        
         return TimeResource::collection($times);
             
              
@@ -81,10 +81,31 @@ class TimeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Time $time)
+    public function update(UpdateTimeRequest $request, Time $time)
     {
+<<<<<<< HEAD
         //
  }
+=======
+        try {
+            $data = $request->validated();
+            
+            $updateTimeService = MakeUpdateTimeService::make();
+
+            $time = $updateTimeService->execute(
+                $time,
+                $data['nome'],
+                $data['cidade'] ?? null,
+                $data['estadio'] ?? null
+            );
+                 return TimeResource::make($updatedTime)
+                    ->response()
+                    ->setStatusCode(200);
+        } catch(\throwable $e){
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+>>>>>>> 52e991b (Implementando o metodo update)
 
     /**
      * Remove the specified resource from storage.
