@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Factories\MakeCreateTimeService;
 use App\Http\Requests\CreateTimeRequest;
 use App\Http\Resources\TimeResource;
 use App\Models\Time;
@@ -9,17 +10,20 @@ use App\Repositories\Contracts\TimeRepositoryInterface;
 use App\Services\CreateTimeService;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
+use App\Factories\MakeListTimeService;
+
+use function Laravel\Prompts\error;
 
 class TimeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
-    
     public function index()
     {
-        $times = $this->allWithJogadores();
+        $allWithJogadoresService = MakeListTimeService::make();
+
+        $times = $allWithJogadoresService->execute();
 
         return TimeResource::collection($times);
     }
@@ -28,11 +32,27 @@ class TimeController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(CreateTimeRequest $request)
-    {
-        $data = $request->validated();
+    {   
+        try { 
 
-        
+            $data = $request->validated();
+            
+            $createTimeService = MakeCreateTimeService::make();
+            $time = $createTimeService->execute(
+                $data['nome'],
+                $data['cidade'],
+                $data['estadio']
+            );
+            
+            return TimeResource::make($time);
+        } catch(\InvalidArgumentException $e) {
+            return response()->json(['error' => $e->getMessage()], 422);
+        } catch(\Throwable $e){
+             return response()->json(['error' => 'Erro interno.'], 500);
+        }
+       
     }
+
 
     /**
      * Display the specified resource.
@@ -57,10 +77,6 @@ class TimeController extends Controller
     {
         $user = Time::find($id);
 
-     
-     //       return response()->json(['message' => 'Time não encontrado'], 404);
-        
-
-      
+        // return response()->json(['message' => 'Time não encontrado'], 404);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\TimeRepositoryInterface;
+use Illuminate\Validation\ValidationException;
+use InvalidArgumentException;
 
 class CreateTimeService
 {
@@ -13,8 +15,17 @@ class CreateTimeService
         $this->timeRepository = $timeRepository;
     }
 
-    public function execute(array $data)
+    public function execute(string $nome, string $cidade, string $estadio)
     {
-        return $this->timeRepository->createTime($data);
+        if(!$nome){
+            throw new InvalidArgumentException("Campo nome deve ser preenchido");
+        }
+        
+        return $this->timeRepository->createTime([
+            'nome' => $nome,
+            'cidade' => $cidade,
+            'estadio' => $estadio,
+        ]);
     }
+
 }
