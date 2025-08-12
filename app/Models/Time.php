@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Time extends Model
 {
-    /** @use HasFactory<\Database\Factories\TimeFactory> */
     use HasFactory;
 
-    public function jogadores():HasMany{
+    protected $fillable = [
+        'nome',
+        'cidade',
+        'estadio',
+    ];
+
+    public function jogadores(): HasMany
+    {
         return $this->hasMany(Jogador::class);
     }
 }

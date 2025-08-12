@@ -21,11 +21,20 @@ class TimeController extends Controller
      */
     public function index()
     {
+        
+
         $allWithJogadoresService = MakeListTimeService::make();
+
+        
 
         $times = $allWithJogadoresService->execute();
 
+    
+        
         return TimeResource::collection($times);
+            
+             
+      
     }
 
     /**
@@ -48,7 +57,7 @@ class TimeController extends Controller
         } catch(\InvalidArgumentException $e) {
             return response()->json(['error' => $e->getMessage()], 422);
         } catch(\Throwable $e){
-             return response()->json(['error' => 'Erro interno.'], 500);
+             return response()->json(['error' =>$e->getMessage()], 500);
         }
        
     }
@@ -75,8 +84,14 @@ class TimeController extends Controller
      */
     public function delete($id)
     {
-        $user = Time::find($id);
+        $time = Time::find($id);
 
-        // return response()->json(['message' => 'Time não encontrado'], 404);
+      if(empty($user)) {
+            return response()->json(['message' => 'Não existe registro de um time com ID ' . $id], 404);
+        }
+
+      return response()->json($time);
+
+        
     }
 }

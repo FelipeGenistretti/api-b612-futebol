@@ -1,15 +1,28 @@
-<?php
+<?php 
 
 namespace App\Factories;
-
+ 
 use App\Repositories\Eloquent\EloquentTimeRepository;
-use App\Services\AllWithJogadores;
 
+use App\Services\AllWithJogadoresService;
+ 
 class MakeListTimeService
+
 {
-    public static function make(): AllWithJogadores
+
+    public static function make(): AllWithJogadoresService
+
     {
+
         $repository = new EloquentTimeRepository();
-        return new AllWithJogadores($repository);
+
+        return new AllWithJogadoresService($repository);
+
     }
+
 }
+
+ 
+
+
+?>

@@ -9,11 +9,10 @@ Route::delete('time/{id}/delete',[TimeController::class,'delete']);
 
 
 Route::post('/teste', function (Request $request) {
-    return response()->json([
-        'mensagem' => 'API ativa!',
-      
-    ]);
-});
+
+}); 
+
+
 
 Route::prefix('times')->group(function() {
     Route::get('/', [TimeController::class, 'index']);
