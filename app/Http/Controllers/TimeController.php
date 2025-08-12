@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Factories\MakeCreateTimeService;
+use App\Services\DeleteTimeService;
 use App\Http\Requests\CreateTimeRequest;
 use App\Http\Resources\TimeResource;
 use App\Models\Time;
@@ -11,6 +12,10 @@ use App\Services\CreateTimeService;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Factories\MakeListTimeService;
+use App\Factories\MakeDeleteTimeService;
+use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
+
 
 use function Laravel\Prompts\error;
 
@@ -77,21 +82,30 @@ class TimeController extends Controller
     public function update(Request $request, Time $time)
     {
         //
-    }
+ }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function delete($id)
+    public function destroy(Time $time)
     {
-        $time = Time::find($id);
-
-      if(empty($user)) {
-            return response()->json(['message' => 'Não existe registro de um time com ID ' . $id], 404);
-        }
-
-      return response()->json($time);
-
         
+        try {
+
+            $deleteTimeService = MakeDeleteTimeService::make();
+       
+
+            $deleteTimeService->execute($time);
+
+            
+            return response()->json(['message' => 'Time deletado com sucesso'], 200);
+            
+        } catch (ValidationException $e) {
+            return response()->json(['error 1 ' => $e->getMessage()], 404);
+        } catch (InvalidArgumentException $e) {
+            return response()->json(['error 2 ' => $e->getMessage()], 422);
+        } catch (\Throwable $e) {
+            return response()->json(['error 3 ' => $e->getMessage()], 500);
+        }
     }
 }
