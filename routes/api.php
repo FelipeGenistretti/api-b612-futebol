@@ -14,3 +14,11 @@ Route::post('/teste', function (Request $request) {
       
     ]);
 });
+
+Route::prefix('times')->group(function() {
+    Route::get('/', [TimeController::class, 'index']);
+    Route::post('/', [TimeController::class, 'store']);
+    Route::get('{time}', [TimeController::class, 'show']);
+    Route::put('{time}', [TimeController::class, 'update']);
+    Route::delete('{time}', [TimeController::class, 'destroy']);
+});
