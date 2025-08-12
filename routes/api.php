@@ -21,7 +21,7 @@ Route::prefix('times')->group(function() {
     Route::post('/', [TimeController::class, 'store']);
     Route::get('{time}', [TimeController::class, 'show']);
     Route::put('{time}', [TimeController::class, 'update']);
-
     
+
 //   Route::delete('{time}', [TimeController::class, 'destroy']);
 });
