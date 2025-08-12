@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Factories\MakeListTimeService;
 use App\Factories\MakeDeleteTimeService;
+use GuzzleHttp\Promise\Create;
 use InvalidArgumentException;
 use Illuminate\Validation\ValidationException;
 
@@ -66,14 +67,15 @@ class TimeController extends Controller
         }
        
     }
-
-
     /**
      * Display the specified resource.
      */
-    public function show(Time $time)
+    public function show(CreateTimeRequest $request)
     {
-        //
+            
+
+
+
     }
 
     /**
@@ -99,7 +101,7 @@ class TimeController extends Controller
 
             
             return response()->json(['message' => 'Time deletado com sucesso'], 200);
-            
+
         } catch (ValidationException $e) {
             return response()->json(['error 1 ' => $e->getMessage()], 404);
         } catch (InvalidArgumentException $e) {
