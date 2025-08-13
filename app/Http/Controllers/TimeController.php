@@ -18,9 +18,9 @@ use GuzzleHttp\Promise\Create;
 use InvalidArgumentException;
 use Illuminate\Validation\ValidationException;
 
-=======
+
 use App\Factories\MakeUpdateTimeService;
->>>>>>> 52e991b (Implementando o metodo update)
+
 
 use function Laravel\Prompts\error;
 
@@ -83,10 +83,10 @@ class TimeController extends Controller
      */
     public function update(UpdateTimeRequest $request, Time $time)
     {
-<<<<<<< HEAD
+
         //
  }
-=======
+
         try {
             $data = $request->validated();
             
@@ -105,7 +105,7 @@ class TimeController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
->>>>>>> 52e991b (Implementando o metodo update)
+
 
     /**
      * Remove the specified resource from storage.
