@@ -6,7 +6,7 @@ use App\Repositories\Contracts\TimeRepositoryInterface;
 
 
 
-class FindTimeByIdService
+class GetTimeByIdService
 {
     protected $timeRepository;
 
