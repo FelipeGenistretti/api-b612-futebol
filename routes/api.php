@@ -16,7 +16,7 @@ Route::get('/teste', function () {
 
 Route::prefix('times')->group(function() {
 
-    Route::delete('/{id}/delete',[TimeController::class,'destroy']);
+    Route::delete('/{id}/destroy',[TimeController::class,'destroy']);
     Route::get('/', [TimeController::class, 'index']);
     Route::post('/', [TimeController::class, 'store']);
     Route::get('{time}', [TimeController::class, 'show']);

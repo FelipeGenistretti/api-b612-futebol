@@ -9,6 +9,7 @@ use InvalidArgumentException;
 
 class EloquentTimeRepository implements TimeRepositoryInterface {
     public function allWithJogadores(){
+      
         $times = Time::with('jogadores')->get();
         return $times;
     }
@@ -18,16 +19,10 @@ class EloquentTimeRepository implements TimeRepositoryInterface {
         return $time;
     }
 
-<<<<<<< HEAD
   
     public function deleteTime(Time $time){
       
         return   $time->delete();
 
-=======
-    public function updateTime(Time $time, array $data){
-        $time->update($data);
-        return $time;
->>>>>>> 52e991b (Implementando o metodo update)
     }
 }

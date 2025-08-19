@@ -27,9 +27,10 @@ class TimeController extends Controller
     public function index()
     {
         
-
+       
         $allWithJogadoresService = MakeListTimeService::make();
 
+        
         $times = $allWithJogadoresService->execute();
     
         return TimeResource::collection($times);
@@ -85,9 +86,9 @@ class TimeController extends Controller
      */
     public function destroy(Time $time)
     {
-        
+             
         try {
-
+          
             $deleteTimeService = MakeDeleteTimeService::make();
        
 

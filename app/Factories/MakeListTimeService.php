@@ -13,9 +13,9 @@ class MakeListTimeService
     public static function make(): AllWithJogadoresService
 
     {
-
+      
         $repository = new EloquentTimeRepository();
-
+       
         return new AllWithJogadoresService($repository);
 
     }
