@@ -4,25 +4,26 @@ namespace App\Factories;
  
 use App\Repositories\Eloquent\EloquentTimeRepository;
 
-use App\Services\FindTimeByIdService;
+use App\Services\GetTimeByIdService;
  
-class MakeFindTimeByIdService
+class MakeGetTimeByIdService
 
 {
 
-    public static function make(): FindTimeByIdService
+    public static function make(): GetTimeByIdService
 
     {
       
         $repository = new EloquentTimeRepository();
        
-        return new FindTimeByIdService($repository);
+        return new GetTimeByIdService($repository);
 
     }
 
 }
 
  
+
 
 
 ?>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Factories\MakeFindTimeByIdService;
+use App\Factories\MakeGetTimeByIdService;
 use App\Factories\MakeCreateTimeService;
 use App\Services\DeleteTimeService;
 use App\Http\Requests\CreateTimeRequest;
@@ -71,7 +71,7 @@ class TimeController extends Controller
      */
     public function show(int $id)
     {
-        $getTimeByIdService = MakeFindTimeByIdService::make();
+        $getTimeByIdService = MakeGetTimeByIdService::make();
         $time = $getTimeByIdService->execute($id);
 
         return TimeResource::make($time);
