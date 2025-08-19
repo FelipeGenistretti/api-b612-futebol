@@ -1,0 +1,178 @@
+{
+    "success": true,
+    "message": "Consulta realizada com sucesso.",
+    "data": {
+        "registros": {
+            "requisicao": {
+                "api_id": 17,
+                "consulta_id": 5,
+                "usuario_id": 64,
+                "lote_id": 59,
+                "registro_lote_id": 59,
+                "ip": "189.112.206.41",
+                "atualizado_em": "2025-08-13T17:21:32.000000Z",
+                "criado_em": "2025-08-13T17:21:31.000000Z",
+                "id": 1425,
+                "codigo_http": 200,
+                "degustacao": false
+            },
+            "api_retorno": {
+                "api_id": 17,
+                "parametro": "{\"renavam\":\"01160742232\"}",
+                "consulta_id": 5,
+                "registro_lote_id": 59,
+                "data_inicio": "2025-08-13T17:21:31.059872Z",
+                "atualizado_em": "2025-08-13T17:21:32.000000Z",
+                "criado_em": "2025-08-13T17:21:31.000000Z",
+                "id": 1425,
+                "json_retorno": "{\"quantidadeVeiculo\":1,\"quantidadeVeiculoReal\":1,\"idUltimoRegistro\":0,\"veiculo\":[{\"anoFabricacao\":2018,\"anoModelo\":2018,\"cmc\":0.00,\"cmt\":1.45,\"tipoCarroceria\":{\"codigo\":\"999\",\"descricao\":\"NãO APLICAVEL\"},\"categoria\":{\"codigo\":\"01\",\"descricao\":\"PARTICULAR\"},\"chassiSerie\":\"19951\",\"cilindradas\":997,\"combustivel\":{\"codigo\":\"16\",\"descricao\":\"ALCOOL/GASOLINA\"},\"cor\":{\"codigo\":\"04\",\"descricao\":\"BRANCA\"},\"especie\":{\"codigo\":\"01\",\"descricao\":\"PASSAGEIRO\"},\"indicadorAlarme\":false,\"indicadorRouboFurto\":false,\"lotacao\":5,\"marcaModelo\":{\"codigo\":\"153322\",\"descricao\":\"FORD/KA SE 1.0 HA B\"},\"municipioEmplacamento\":{\"codigo\":\"7107\",\"descricao\":\"SAO PAULO\"},\"qtdEixos\":2,\"pbt\":1.45,\"potencia\":85,\"codigoRenavam\":\"01160742232\",\"situacao\":\"CIRCULACAO\",\"tipoVeiculo\":{\"codigo\":\"06\",\"descricao\":\"AUTOMOVEL\"},\"ufJurisdicao\":\"SP\",\"dataLimite\":null,\"indicadorComunicacaoVenda\":false,\"indicadorLeilao\":false,\"indicadorMultaRenainf\":false,\"indicadorPendenciaEmissao\":false,\"indicadorRecall1\":false,\"indicadorRecall2\":false,\"indicadorRecall3\":false,\"indicadorRecallMontadora\":false,\"restricao1\":{\"codigo\":\"00\",\"descricao\":\"SEM RESTRICAO\"},\"restricao2\":{\"codigo\":\"00\",\"descricao\":\"SEM RESTRICAO\"},\"restricao3\":{\"codigo\":\"00\",\"descricao\":\"SEM RESTRICAO\"},\"restricao4\":{\"codigo\":\"00\",\"descricao\":\"SEM RESTRICAO\"},\"indicadorRestricaoRenajud\":false,\"restricaoRfb\":{\"indicador\":\"0\",\"descricao\":\"INEXISTENTE\"},\"procedencia\":\"NACIONAL\",\"tipoArrendatario\":{\"codigo\":\"0\",\"descricao\":\"INEXISTENTE\"},\"numeroCarroceria\":\"\",\"remarcacaoChassi\":{\"codigo\":\"2\",\"descricao\":\"NORMAL\"},\"dataBaixa\":null,\"dataEmissaoCrv\":\"2025-06-11\",\"dataUltimaAtualizacao\":\"2025-06-11\",\"dataAtualizacaoMre\":null,\"dataDistImportacao\":null,\"orgaoRfb\":{\"codigo\":\"0000000\",\"descricao\":\"INEXISTENTE\"},\"numeroEixoAuxiliar\":\"\",\"numeroEixoTraseiro\":\"\",\"naturezaFaturado\":\"JURIDICA\",\"ufFaturado\":\"SP\",\"tipoImportacao\":null,\"naturezaImportador\":\"\",\"descricaoDocImportador\":\"INEXISTENTE\",\"paisTransferencia\":{\"codigo\":\"00000\",\"descricao\":\"INEXISTENTE\"},\"docProprietarioIndicado\":{\"tipo\":\"0\",\"descricao\":\"INEXISTENTE\"},\"tipoProprietario\":{\"codigo\":\"1\",\"descricao\":\"FISICA\"},\"nomeArrendatario\":\"\",\"numeroIdentificacaoArrendatario\":\"\",\"numeroCambio\":\"\",\"chassi\":\"9BFZH55L5J8219951\",\"numeroDeclaracaoImportacao\":\"\",\"numeroIdFaturamento\":\"59286583000101\",\"numeroIdImportador\":\"\",\"numeroMotor\":\"XNKAJ8219951\",\"placa\":\"GJC3546\",\"possuidor\":{\"nome\":\"JULIANA APARECIDA GALDINO DE SOUZA\",\"numeroDocumento\":\"28356005825\",\"origem\":\"1\"},\"numeroDocProprietarioIndicado\":\"\",\"nomeProprietario\":\"JULIANA APARECIDA GALDINO DE SOUZA\",\"numeroIdentificacaoProprietario\":\"28356005825\",\"registroAduaneiro\":\"\"}]}",
+                "data_fim": "2025-08-13T17:21:32.355375Z",
+                "requisicao_id": 1425,
+                "sucesso": true
+            }
+        },
+        "retorno": {
+            "quantidadeVeiculo": 1,
+            "quantidadeVeiculoReal": 1,
+            "idUltimoRegistro": 0,
+            "veiculo": [
+                {
+                    "anoFabricacao": 2018,
+                    "anoModelo": 2018,
+                    "cmc": 0,
+                    "cmt": 1.45,
+                    "tipoCarroceria": {
+                        "codigo": "999",
+                        "descricao": "NãO APLICAVEL"
+                    },
+                    "categoria": {
+                        "codigo": "01",
+                        "descricao": "PARTICULAR"
+                    },
+                    "chassiSerie": "19951",
+                    "cilindradas": 997,
+                    "combustivel": {
+                        "codigo": "16",
+                        "descricao": "ALCOOL/GASOLINA"
+                    },
+                    "cor": {
+                        "codigo": "04",
+                        "descricao": "BRANCA"
+                    },
+                    "especie": {
+                        "codigo": "01",
+                        "descricao": "PASSAGEIRO"
+                    },
+                    "indicadorAlarme": false,
+                    "indicadorRouboFurto": false,
+                    "lotacao": 5,
+                    "marcaModelo": {
+                        "codigo": "153322",
+                        "descricao": "FORD/KA SE 1.0 HA B"
+                    },
+                    "municipioEmplacamento": {
+                        "codigo": "7107",
+                        "descricao": "SAO PAULO"
+                    },
+                    "qtdEixos": 2,
+                    "pbt": 1.45,
+                    "potencia": 85,
+                    "codigoRenavam": "01160742232",
+                    "situacao": "CIRCULACAO",
+                    "tipoVeiculo": {
+                        "codigo": "06",
+                        "descricao": "AUTOMOVEL"
+                    },
+                    "ufJurisdicao": "SP",
+                    "dataLimite": null,
+                    "indicadorComunicacaoVenda": false,
+                    "indicadorLeilao": false,
+                    "indicadorMultaRenainf": false,
+                    "indicadorPendenciaEmissao": false,
+                    "indicadorRecall1": false,
+                    "indicadorRecall2": false,
+                    "indicadorRecall3": false,
+                    "indicadorRecallMontadora": false,
+                    "restricao1": {
+                        "codigo": "00",
+                        "descricao": "SEM RESTRICAO"
+                    },
+                    "restricao2": {
+                        "codigo": "00",
+                        "descricao": "SEM RESTRICAO"
+                    },
+                    "restricao3": {
+                        "codigo": "00",
+                        "descricao": "SEM RESTRICAO"
+                    },
+                    "restricao4": {
+                        "codigo": "00",
+                        "descricao": "SEM RESTRICAO"
+                    },
+                    "indicadorRestricaoRenajud": false,
+                    "restricaoRfb": {
+                        "indicador": "0",
+                        "descricao": "INEXISTENTE"
+                    },
+                    "procedencia": "NACIONAL",
+                    "tipoArrendatario": {
+                        "codigo": "0",
+                        "descricao": "INEXISTENTE"
+                    },
+                    "numeroCarroceria": "",
+                    "remarcacaoChassi": {
+                        "codigo": "2",
+                        "descricao": "NORMAL"
+                    },
+                    "dataBaixa": null,
+                    "dataEmissaoCrv": "2025-06-11",
+                    "dataUltimaAtualizacao": "2025-06-11",
+                    "dataAtualizacaoMre": null,
+                    "dataDistImportacao": null,
+                    "orgaoRfb": {
+                        "codigo": "0000000",
+                        "descricao": "INEXISTENTE"
+                    },
+                    "numeroEixoAuxiliar": "",
+                    "numeroEixoTraseiro": "",
+                    "naturezaFaturado": "JURIDICA",
+                    "ufFaturado": "SP",
+                    "tipoImportacao": null,
+                    "naturezaImportador": "",
+                    "descricaoDocImportador": "INEXISTENTE",
+                    "paisTransferencia": {
+                        "codigo": "00000",
+                        "descricao": "INEXISTENTE"
+                    },
+                    "docProprietarioIndicado": {
+                        "tipo": "0",
+                        "descricao": "INEXISTENTE"
+                    },
+                    "tipoProprietario": {
+                        "codigo": "1",
+                        "descricao": "FISICA"
+                    },
+                    "nomeArrendatario": "",
+                    "numeroIdentificacaoArrendatario": "",
+                    "numeroCambio": "",
+                    "chassi": "9BFZH55L5J8219951",
+                    "numeroDeclaracaoImportacao": "",
+                    "numeroIdFaturamento": "59286583000101",
+                    "numeroIdImportador": "",
+                    "numeroMotor": "XNKAJ8219951",
+                    "placa": "GJC3546",
+                    "possuidor": {
+                        "nome": "JULIANA APARECIDA GALDINO DE SOUZA",
+                        "numeroDocumento": "28356005825",
+                        "origem": "1"
+                    },
+                    "numeroDocProprietarioIndicado": "",
+                    "nomeProprietario": "JULIANA APARECIDA GALDINO DE SOUZA",
+                    "numeroIdentificacaoProprietario": "28356005825",
+                    "registroAduaneiro": ""
+                }
+            ],
+            "statusCode": 200
+        }
+    }
+}

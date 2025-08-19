@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 
 
-Route::post('/teste', function (Request $request) {
-
-}); 
+Route::get('/teste', function () {
+   return response()->json(['message' => 'Testando rota']);
+});
 
 
 
