@@ -3,7 +3,7 @@
 namespace App\Factories;
  
 use App\Repositories\Eloquent\EloquentTimeRepository;
-
+use App\Repositories\Contracts\TimeRepository;
 use App\Services\GetTimeByIdService;
  
 class MakeGetTimeByIdService
@@ -15,7 +15,8 @@ class MakeGetTimeByIdService
     {
       
         $repository = new EloquentTimeRepository();
-       
+        
+        
         return new GetTimeByIdService($repository);
 
     }

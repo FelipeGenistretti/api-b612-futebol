@@ -9,4 +9,5 @@ interface TimeRepositoryInterface
     public function createTime(array $data);
     public function getTimeById(int $id);
     public function deleteTime(Time $time);
+    public function updateTime(Time $time, array $data);
 }

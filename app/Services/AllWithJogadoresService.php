@@ -21,7 +21,7 @@ class AllWithJogadoresService
 
     public function execute()
     {
-        
+       
         return $this->timeRepository->allWithJogadores();
     }
 }

@@ -29,4 +29,10 @@ class EloquentTimeRepository implements TimeRepositoryInterface {
         $time = Time::with('jogadores')->findOrFail($id);
         return $time;
     }
+
+    public function updateTime(Time $time, array $data){
+      
+        $time->update($data);
+        return $time->refresh();
+    }
 }

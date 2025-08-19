@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Factories\MakeUpdateTimeService;
 use App\Factories\MakeGetTimeByIdService;
 use App\Factories\MakeCreateTimeService;
 use App\Services\DeleteTimeService;
 use App\Http\Requests\CreateTimeRequest;
+use App\Http\Requests\UpdateTimeRequest;
 use App\Http\Resources\TimeResource;
 use App\Models\Time;
 use App\Repositories\Contracts\TimeRepositoryInterface;
@@ -14,6 +16,7 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Factories\MakeListTimeService;
 use App\Factories\MakeDeleteTimeService;
+use App\Services\GetTimeByIdService;
 use InvalidArgumentException;
 use Illuminate\Validation\ValidationException;
 
@@ -69,22 +72,31 @@ class TimeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id)
-    {
+  public function show(int $id)
+{
+    try {
         $getTimeByIdService = MakeGetTimeByIdService::make();
         $time = $getTimeByIdService->execute($id);
-
+ 
         return TimeResource::make($time);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'error' => $e->getMessage(),
+            'line' => $e->getLine(),
+            'file' => $e->getFile(),
+        ], 500);
     }
+}
 
    /**
      * Update the specified resource in storage.
      */
    public function update(UpdateTimeRequest $request, Time $time)
 {
+   
     try {
         $data = $request->validated();
-
+        
         $updateTimeService = MakeUpdateTimeService::make();
         $updatedTime = $updateTimeService->execute(
             $time,
@@ -95,7 +107,7 @@ class TimeController extends Controller
 
         return TimeResource::make($updatedTime)
             ->response()
-            ->setStatusCode(200);
+            ->setStatusCode(201);
     } catch (\Throwable $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
