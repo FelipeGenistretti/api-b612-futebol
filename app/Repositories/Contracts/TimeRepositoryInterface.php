@@ -7,6 +7,6 @@ interface TimeRepositoryInterface
 {
     public function allWithJogadores();
     public function createTime(array $data);
-   
+    public function getTimeById(int $id);
     public function deleteTime(Time $time);
 }

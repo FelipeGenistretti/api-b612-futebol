@@ -23,6 +23,10 @@ class EloquentTimeRepository implements TimeRepositoryInterface {
     public function deleteTime(Time $time){
       
         return   $time->delete();
+    }
 
+    public function getTimeById(int $id){
+        $time = Time::findOrFail($id);
+        return $time;
     }
 }

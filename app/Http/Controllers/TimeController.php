@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Factories\MakeFindTimeByIdService;
 use App\Factories\MakeCreateTimeService;
 use App\Services\DeleteTimeService;
 use App\Http\Requests\CreateTimeRequest;
@@ -68,18 +69,40 @@ class TimeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Time $time)
+    public function show(int $id)
     {
-        //
+        $getTimeByIdService = MakeFindTimeByIdService::make();
+        $time = $getTimeByIdService->execute($id);
+
+        return TimeResource::make($time);
     }
 
-    /**
+   /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTimeRequest $request, Time $time)
-    {
-        //
- }
+   public function update(UpdateTimeRequest $request, Time $time)
+{
+    try {
+        $data = $request->validated();
+
+        $updateTimeService = MakeUpdateTimeService::make();
+        $updatedTime = $updateTimeService->execute(
+            $time,
+            $data['nome'],
+            $data['cidade'] ?? null,
+            $data['estadio'] ?? null
+        );
+
+        return TimeResource::make($updatedTime)
+            ->response()
+            ->setStatusCode(200);
+    } catch (\Throwable $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+
+
+
 
     /**
      * Remove the specified resource from storage.
