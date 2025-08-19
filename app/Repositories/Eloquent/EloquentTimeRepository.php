@@ -26,7 +26,7 @@ class EloquentTimeRepository implements TimeRepositoryInterface {
     }
 
     public function getTimeById(int $id){
-        $time = Time::findOrFail($id);
+        $time = Time::with('jogadores')->findOrFail($id);
         return $time;
     }
 }
