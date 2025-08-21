@@ -19,6 +19,7 @@ use App\Factories\MakeDeleteTimeService;
 use App\Services\GetTimeByIdService;
 use InvalidArgumentException;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
 use function Laravel\Prompts\error;
@@ -72,21 +73,25 @@ class TimeController extends Controller
     /**
      * Display the specified resource.
      */
-  public function show(int $id)
-{
-    try {
-        $getTimeByIdService = MakeGetTimeByIdService::make();
-        $time = $getTimeByIdService->execute($id);
- 
-        return TimeResource::make($time);
-    } catch (\Throwable $e) {
-        return response()->json([
-            'error' => $e->getMessage(),
-            'line' => $e->getLine(),
-            'file' => $e->getFile(),
-        ], 500);
+    public function show(int $id)
+    {
+        try {
+            $getTimeByIdService = MakeGetTimeByIdService::make();
+            $time = $getTimeByIdService->execute($id);
+
+            return TimeResource::make($time);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Time não encontrado'
+            ], 404);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile(),
+            ], 500);
+        }
     }
-}
 
    /**
      * Update the specified resource in storage.
