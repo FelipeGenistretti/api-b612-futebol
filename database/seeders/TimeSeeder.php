@@ -13,6 +13,6 @@ class TimeSeeder extends Seeder
      */
     public function run(): void
     {
-        Time::factory()->count(50)->create();
+        $this->call(JogadorSeeder::class);
     }
 }

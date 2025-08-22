@@ -15,7 +15,7 @@ class JogadorSeeder extends Seeder
     public function run(): void
     {
         Time::factory()
-            ->count(50)
+            ->count(100)
             ->has(Jogador::factory()->count(11), 'jogadores')
             ->create();
     }
