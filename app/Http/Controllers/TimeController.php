@@ -140,4 +140,19 @@ class TimeController extends Controller
             return response()->json(['error 3 ' => $e->getMessage()], 500);
         }
     }
+
+    public function NewDestroy($id){
+
+        $time = Time::find($id);
+        $aux = $time;
+        if(!$time){
+            return response()->json(['error' => 'Time não encontrado'], 404);
+        }
+        $time->delete();
+        return response()->json(['message' => 'Time deletado com sucesso', 'time' => $aux], 200);
+
+    }
+
+
+
 }

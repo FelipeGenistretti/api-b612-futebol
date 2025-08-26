@@ -25,3 +25,5 @@ Route::prefix('times')->group(function() {
     
 //   Route::delete('{time}', [TimeController::class, 'destroy']);
 });
+
+Route::delete('/nd/{id}', [TimeController::class, 'NewDestroy']);
