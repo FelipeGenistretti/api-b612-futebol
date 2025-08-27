@@ -10,6 +10,7 @@ use Error;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -41,6 +42,34 @@ class AuthController extends Controller
         ], 201);
 
         }catch(\InvalidArgumentException $e){
+            return response()->json(['error' => $e->getMessage()], 422);
+        } catch (\Throwable $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+    public function login(Request $request)
+    {
+        try {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|string|min:6',
+            ]);
+
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response()->json(['error' => 'Credenciais inválidas'], 401);
+            }
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            return response()->json([
+                'user' => UserResource::make($user),
+                'token' => $token,
+            ], 200);
+        } catch (InvalidArgumentException $e) {
             return response()->json(['error' => $e->getMessage()], 422);
         } catch (\Throwable $e) {
             return response()->json(['error' => $e->getMessage()], 500);
