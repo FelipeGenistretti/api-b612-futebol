@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Time;
+use App\Repositories\Contracts\TimeRepositoryInterface;
+
 class UpdateTimeService {
     protected $timeRepository;
 
