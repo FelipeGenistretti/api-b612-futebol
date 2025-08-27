@@ -33,4 +33,5 @@ class EloquentTimeRepository implements TimeRepositoryInterface {
     {
         return Time::findOrFail($id);
     }
+
 }

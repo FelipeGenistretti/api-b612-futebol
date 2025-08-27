@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Factories\MakeRegisterUserService;
+use App\Factories\MakeUpdatePasswordService;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Error;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use InvalidArgumentException;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -45,6 +48,26 @@ class AuthController extends Controller
         } catch (\Throwable $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request){
+        try{
+            $data = $request->validated();
+            $updatePasswordService = MakeUpdatePasswordService::make();
+            $response = $updatePasswordService->execute(
+                Auth::user()->email,
+                $data['new_password'],
+                $data['password']
+            );
+
+            return response()->json($response, 200);
+            
+        }catch(Error $e){
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 400);
+        }
+
     }
 
     /**

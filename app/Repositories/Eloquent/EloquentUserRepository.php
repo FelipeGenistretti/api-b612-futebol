@@ -18,4 +18,11 @@ class EloquentUserRepository implements UserRepositoryInterface {
     public function findUserByEmail(string $email){
         return User::where('email', $email)->first();
     }
+
+      public function updatePassword(User $user, string $newPassword){
+        $user->password = $newPassword;
+        $user->save();
+
+        return $user;
+    }
 }

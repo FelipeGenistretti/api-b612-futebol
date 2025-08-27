@@ -8,4 +8,5 @@ interface UserRepositoryInterface
    public function registerUser(array $data);
    public function findUserbyId(int $id);
    public function findUserByEmail(string $email);
+   public function updatePassword(User $user, string $newPassword);
 }
