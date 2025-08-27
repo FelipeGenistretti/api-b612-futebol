@@ -15,6 +15,22 @@ class RegisterRequest extends FormRequest
         return true;
     }
 
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+
+{
+
+    $response = response()->json([
+
+        'errors' => $validator->errors()
+
+    ], 422);
+ 
+    throw new \Illuminate\Validation\ValidationException($validator, $response);
+
+}
+
+ 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,7 +39,7 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "nome"=>['string', 'max:255', 'required'],
+            "name"=>['string', 'max:255', 'required'],
             "email"=>['string', 'max:255', 'required', 'email','unique:users,email'],
             "password"=>['string', 'required', 'confirmed', Password::default()]
         ];

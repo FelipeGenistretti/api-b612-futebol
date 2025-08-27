@@ -19,6 +19,7 @@ class RegisterUserService
     {
         $user = $this->userRepository->findUserByEmail($email);
 
+        
         if($user){
             throw new Error("Esse usuário já existe!");
         }
@@ -28,8 +29,9 @@ class RegisterUserService
         }
 
         $user =  $this->userRepository->registerUser([
-            'nome'=>$nome,
             'email'=>$email,
+            'name'=>$nome,
+            
             'password'=> $this->hashPassword($password)
         ]);
 

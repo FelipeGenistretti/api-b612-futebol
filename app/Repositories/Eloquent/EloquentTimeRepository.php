@@ -29,7 +29,8 @@ class EloquentTimeRepository implements TimeRepositoryInterface {
         return $time;
     }
 
-    public function findById(int $id):Time{
+    public function findById(int $id)
+    {
         return Time::findOrFail($id);
     }
 }

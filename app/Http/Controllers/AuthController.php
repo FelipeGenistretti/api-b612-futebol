@@ -30,8 +30,8 @@ class AuthController extends Controller
             $data = $request->validated();
             $userRegisterService = MakeRegisterUserService::make();
             $user= $userRegisterService->execute(
-                $data['nome'],
                 $data['email'],
+                $data['name'],
                 $data['password']
             );
 

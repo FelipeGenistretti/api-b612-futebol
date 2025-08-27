@@ -10,5 +10,5 @@ interface TimeRepositoryInterface
    
     public function deleteTime(Time $time);
     public function updateTime(Time $time, array $data);
-    public function findById(Time $time);
+    public function findById(int $id);
 }
