@@ -28,7 +28,10 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         try{
+
+
             $data = $request->validated();
+
             $userRegisterService = MakeRegisterUserService::make();
             $user= $userRegisterService->execute(
                 $data['email'],
@@ -74,6 +77,13 @@ class AuthController extends Controller
         } catch (\Throwable $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'message'=>'Logout realizado com sucesso'
+        ]);
     }
 
     /**

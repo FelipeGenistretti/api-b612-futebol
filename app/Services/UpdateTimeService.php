@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Services;
 use App\Models\Time;
 use App\Repositories\Contracts\TimeRepositoryInterface;
 
