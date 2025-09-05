@@ -9,8 +9,7 @@ use InvalidArgumentException;
 
 class EloquentTimeRepository implements TimeRepositoryInterface {
     public function allWithJogadores(){
-        $times = Time::with('jogadores')->get();
-        return $times;
+        return Time::with('jogadores')->get();
     }
 
     public function createTime (array $data){
@@ -32,5 +31,15 @@ class EloquentTimeRepository implements TimeRepositoryInterface {
     public function findById(int $id)
     {
         return Time::findOrFail($id);
+    }
+
+    public function allTimes()
+    {
+        return Time::all(); 
+    }
+
+    public function timeComJogadoresById(int $id)
+    {
+        return Time::with('jogadores')->findOrFail($id);
     }
 }
