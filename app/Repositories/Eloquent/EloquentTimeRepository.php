@@ -4,10 +4,11 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Time;
 use App\Repositories\Contracts\TimeRepositoryInterface;
+use Illuminate\Support\Facades\Cache;
 use InvalidArgumentException;
 
-
 class EloquentTimeRepository implements TimeRepositoryInterface {
+    protected $cacheTTL = 3600;
     public function allWithJogadores(){
         return Time::with('jogadores')->get();
     }
