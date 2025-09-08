@@ -35,7 +35,6 @@ class PDFController extends Controller
 
     public function enviarPdfPorEmail(int $id, string $email)
     {
-        // Enfileira o Job
         SendTimePdfEmailJob::dispatch($id, $email);
 
         return response()->json([

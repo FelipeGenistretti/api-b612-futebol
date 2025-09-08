@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -14,7 +13,7 @@ class TimePdfMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public string $pdfContent;
+    public string $pdfContent;  // conteúdo binário do PDF
     public string $timeNome;
 
     public function __construct(string $pdfContent, string $timeNome)
@@ -26,24 +25,28 @@ class TimePdfMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Relatório do Time: {$this->timeNome}",
-            from: 'felipe.rodrigues@sistemastecnol.com.br' // força o remetente
+            subject: "PDF do time: {$this->timeNome}",
+            from: 'felipe.rodrigues@sistemastecnol.com.br' // remetente
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.time_pdf',
+            markdown: 'emails.time_pdf', // seu markdown
         );
     }
 
     public function attachments(): array
     {
+        // garante que o PDF seja binário
+        $pdfBinary = $this->pdfContent;
+
         return [
-    Attachment::fromData(function () {
-        return $this->pdfContent;
-    }, "relatorio_{$this->timeNome}.pdf", ['mime' => 'application/pdf']),
-];
+            Attachment::fromData(
+                fn() => $pdfBinary,
+                "relatorio_{$this->timeNome}.pdf"
+            )->withMime('application/pdf')
+        ];
     }
 }
