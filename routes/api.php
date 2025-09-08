@@ -19,7 +19,7 @@ Route::get('/gerar-pdf/{id}', [PDFController::class, 'gerarPDFTime']);
 
 
 Route::middleware('auth:sanctum')->prefix('times')->group(function() {
-    Route::post('/times/{time}/enviar-pdf', [PDFController::class, 'enviarPdfPorEmail']);
+    Route::post('/{time}/enviar-pdf', [PDFController::class, 'enviarPdfPorEmail']);
     Route::delete('/{id}/delete', [TimeController::class,'destroy']);
     Route::get('/', [TimeController::class, 'index']);
     Route::post('/', [TimeController::class, 'store']);

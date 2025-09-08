@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Factories\MakeEnviarPdfPorEmailService;
 use App\Jobs\SendTimePdfEmailJob;
 use App\Factories\MakeGerarPdfService;
 use App\Factories\MakeGerarPdfTimeService;
+
 use App\Models\Time;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PDFController extends Controller
@@ -33,16 +34,18 @@ class PDFController extends Controller
             return response()->json(['message' => $e->getMessage()], 404);
         }
     }
-    public function enviarPdfPorEmail($time_id)
+     public function enviarPdfPorEmail($time_id)
     {
-        $user = Auth::user();                
-        $email = $user->email;           
-        $time = Time::findOrFail($time_id); 
-        SendTimePdfEmailJob::dispatch($time->id, $email);
+        try {
+            $service = MakeEnviarPdfPorEmailService::make();
+            $service->execute($time_id);
 
-        return response()->json([
-            'message' => "O envio do PDF do time {$time->nome} para {$email} foi enfileirado."
-        ]);
+            return response()->json([
+                'message' => "O envio do PDF do time ID {$time_id} foi enfileirado."
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
+        }
     }
 
 
