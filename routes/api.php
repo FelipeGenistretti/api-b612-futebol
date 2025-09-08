@@ -5,6 +5,8 @@ use App\Http\Controllers\TimeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PDFController;
 
+
+
 Route::get('/teste', function() {
     return response()->json(['mensagem' => 'Olá Mundo']);
 });
@@ -13,6 +15,8 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/gerar-pdf',[PDFController::class, 'gerarPDF']);
 Route::get('/gerar-pdf/{id}', [PDFController::class, 'gerarPDFTime']);
+Route::get('/enviar-pdf/{id}/{email}', [PDFController::class, 'enviarPdfPorEmail']);
+
 
 Route::middleware('auth:sanctum')->prefix('times')->group(function() {
     Route::delete('/{id}/delete', [TimeController::class,'destroy']);

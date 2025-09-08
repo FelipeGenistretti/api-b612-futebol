@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Factories\MakeGerarPdfComJogadoresService;
+use App\Jobs\SendTimePdfEmailJob;
 use App\Factories\MakeGerarPdfService;
 use App\Factories\MakeGerarPdfTimeService;
+use App\Models\Time;
+use Illuminate\Http\Request;
 
 class PDFController extends Controller
 {
@@ -18,7 +20,7 @@ class PDFController extends Controller
         }
     }
 
-  public function gerarPDFTime(int $id)
+    public function gerarPDFTime(int $id)
     {
         try {
             $service = MakeGerarPdfTimeService::make();
@@ -30,4 +32,19 @@ class PDFController extends Controller
             return response()->json(['message' => $e->getMessage()], 404);
         }
     }
+
+    public function enviarPdfPorEmail(int $id, string $email)
+{
+    try {
+        // Enfileira o job
+        SendTimePdfEmailJob::dispatch($id, $email);
+
+        return response()->json([
+            'message' => "O envio do PDF do time {$id} para {$email} foi enfileirado."
+        ]);
+    } catch (\Exception $e) {
+        return response()->json(['message' => $e->getMessage()], 404);
+    }
+}
+
 }
