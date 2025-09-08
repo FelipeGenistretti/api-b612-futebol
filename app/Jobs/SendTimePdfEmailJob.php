@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Jobs;
 
 use App\Factories\MakeGerarPdfTimeService;
+use App\Mail\TimePdfMail;
 use App\Models\Time;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,6 +11,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+
 
 class SendTimePdfEmailJob implements ShouldQueue
 {
@@ -25,18 +29,19 @@ class SendTimePdfEmailJob implements ShouldQueue
 
     public function handle(): void
     {
-        $service = MakeGerarPdfTimeService::make();
-        $pdf = $service->execute($this->timeId);
-        $pdfContent = $pdf->output();
+        try {
+            $time = Time::findOrFail($this->timeId);
 
-        $time = Time::findOrFail($this->timeId);
+            $service = MakeGerarPdfTimeService::make();
+            $pdf = $service->execute($this->timeId);
+            $pdfContent = $pdf->output();
 
-        Mail::send([], [], function ($message) use ($time, $pdfContent) {
-            $message->to($this->email)
-                    ->subject("PDF do time {$time->nome}")
-                    ->attachData($pdfContent, "time_{$time->id}.pdf", [
-                        'mime' => 'application/pdf',
-                    ]);
-        });
+            Mail::to($this->email)->send(new TimePdfMail($pdfContent, $time->nome));
+
+            Log::info("Email enviado com sucesso para {$this->email}");
+        } catch (\Exception $e) {
+            Log::error("Falha no Job SendTimePdfEmailJob: ".$e->getMessage());
+            throw $e; // mantém o Horizon/Job ciente da falha
+        }
     }
 }

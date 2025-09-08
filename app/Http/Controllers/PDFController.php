@@ -34,17 +34,14 @@ class PDFController extends Controller
     }
 
     public function enviarPdfPorEmail(int $id, string $email)
-{
-    try {
-        // Enfileira o job
+    {
+        // Enfileira o Job
         SendTimePdfEmailJob::dispatch($id, $email);
 
         return response()->json([
             'message' => "O envio do PDF do time {$id} para {$email} foi enfileirado."
         ]);
-    } catch (\Exception $e) {
-        return response()->json(['message' => $e->getMessage()], 404);
     }
-}
+
 
 }
