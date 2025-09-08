@@ -15,10 +15,11 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/gerar-pdf',[PDFController::class, 'gerarPDF']);
 Route::get('/gerar-pdf/{id}', [PDFController::class, 'gerarPDFTime']);
-Route::get('/enviar-pdf/{id}/{email}', [PDFController::class, 'enviarPdfPorEmail']);
+
 
 
 Route::middleware('auth:sanctum')->prefix('times')->group(function() {
+    Route::post('/times/{time}/enviar-pdf', [PDFController::class, 'enviarPdfPorEmail']);
     Route::delete('/{id}/delete', [TimeController::class,'destroy']);
     Route::get('/', [TimeController::class, 'index']);
     Route::post('/', [TimeController::class, 'store']);
